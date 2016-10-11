@@ -1,0 +1,19 @@
+{
+  "name": "Blog",
+  "version": "0.0.0",
+  "description": "This is a simple blog.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Barnabás Czémán",
+  "license": "MIT",
+  "dependencies": {
+    "codemirror": "^5.19.0",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "marked": "^0.3.6",
+    "uikit": "^2.27.1"
+  }
+}
