@@ -1,58 +1,45 @@
-const authMW = require('../middleware/generic/auth');
-const checkUserLoginMW = require('../middleware/generic/checkUserLogin');
 const renderMW = require('../middleware/generic/render');
-const getArticleListMW = require('../middleware/articles/getArticleList');
-const newArticleMW = require('../middleware/articles/newArticle');
+const redirectMW = require('../middleware/generic/redirect');
+const authMW = require('../middleware/auth/auth');
+const newArticleMW = require('../middleware/article/newArticle');
+const getArticleMW = require('../middleware/article/getArticle');
+const editArticleMW = require('../middleware/article/editArticle');
+const deleteArticleMW = require('../middleware/article/deleteArticle');
 
 module.exports = function(app) {
-    
-    var objectRepository = {
-        articleModel: articleModel
-    };
+  /**
+  * New article
+  */
+  app.get('/article/new',
+    authMW,
+    newArticleMW,
+    renderMW("New Article")
+  );
 
-    /**
-     * List all article
-     */
+  /**
+  * Get the article
+  */
+  app.get('/article/:article_id',
+    getArticleMW,
+    renderMW("Article")
+  );
 
-    app.use('/articles',
-        checkUserLoginMW(objectRepository),
-        getArticleListMW(objectRepository),
-        renderMW(objectRepository, 'articles')
-    );
+  /**
+   * Edit the article
+   */
+  app.use('/article/:article_id/edit',
+    authMW,
+    editArticleMW,
+    renderMW("Edit Article")
+  );
 
-    /**
-     * Create new article
-     */
-
-    app.use('/articles/new',
-        authMW(objectRepository),
-        newArticleMW(objectRepository),
-        renderMW(objectRepository, 'newarticle')
-    );
-
-    /**
-     * Edit the article details
-     */
-
-    app.use('/article/:id/edit',
-        authMW(objectRepository),
-        getItemMW(objectRepository),
-        getTypeListMW(objectRepository),
-        updateItemMW(objectRepository),
-        renderMW(objectRepository, 'newarticle')
-    );
-
-    /**
-     * Delete article
-     * - then redirect to /articles
-     */
-
-    app.use('/article/:id/delete',
-        authMW(objectRepository),
-        getItemMW(objectRepository),
-        deleteItemMW(objectRepository),
-        function (req, res, next) {
-            return res.redirect('/articles');
-        }
-    );
+  /**
+   * Delete article
+   * - then redirect to /articles
+   */
+  app.use('/article/:article_id/delete',
+    authMW,
+    deleteArticleMW,
+    redirectMW('/articles')
+  );
 };
