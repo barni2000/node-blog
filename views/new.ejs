@@ -1,0 +1,21 @@
+<%- include('header') -%>
+
+<div class="uk-panel uk-panel-box">
+  <% if (text !== '') { %>
+    <h3 class="uk-panel-title">Edit Article</h3>
+  <% } else { %>
+    <h3 class="uk-panel-title">New Article</h3>
+  <% } %>
+  <form class="uk-form uk-form-stacked">
+    <textarea data-uk-htmleditor="{markdown:true}">
+      <% if (text !== '') { %>
+        <%- text -%>
+      <% }%>
+    </textarea>
+    <button class="uk-button uk-button-primary">
+      <i class="uk-icon-save"></i> Save
+    </button>
+  </form>
+</div>
+
+<%- include('footer') -%>

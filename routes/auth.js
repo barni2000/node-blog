@@ -6,12 +6,11 @@ const logoutMW = require('../middleware/auth/logout');
 module.exports = function(app) {
 
   app.use('/login',
-    loginMW,
-    renderMW('Login')
+    loginMW
   );
 
   app.get('/logout',
     logoutMW,
-    redirectMW('/articles')
+    redirectMW('/')
   );
 }

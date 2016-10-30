@@ -1,0 +1,17 @@
+<div class="uk-panel uk-panel-box uk-margin" onclick="open_article(<%= article.id %>)" >
+
+  <a href="/article/<%= article.id %>/delete" class="uk-button uk-button-danger uk-align-right">
+    <i class="uk-icon-trash"></i> Delete
+  </a>
+
+  <a href="/article/<%= article.id %>/edit" class="uk-button uk-button-primary uk-align-right">
+    <i class="uk-icon-wrench"></i> Edit
+  </a>
+
+  <h3 class="uk-panel-title"><%= article.author %> <%= article.date %></h3>
+  <div class="uk-panel uk-panel-divider"></div>
+
+  <%- article.text -%>
+
+
+</div>

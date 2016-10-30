@@ -5,8 +5,7 @@ module.exports = function(app) {
   /**
    * List all article
    */
-  app.get('/articles',
-      listArticlesMW,
-      renderMW('List Articles')
+  app.get('/',
+      listArticlesMW
   );
 }

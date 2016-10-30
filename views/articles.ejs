@@ -1,0 +1,7 @@
+<%- include('header') -%>
+
+<% articles.forEach(function(article){ %>
+  <%- include('article_preview', {article: article}) -%>
+<% });%>
+
+<%- include('footer') -%>

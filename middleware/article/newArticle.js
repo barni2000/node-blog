@@ -3,5 +3,5 @@
  */
 
 module.exports = function (req, res, next) {
-  return next();
+  res.render('new', {title: 'New Article', text:''})
 };

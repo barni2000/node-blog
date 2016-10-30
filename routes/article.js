@@ -12,16 +12,14 @@ module.exports = function(app) {
   */
   app.get('/article/new',
     authMW,
-    newArticleMW,
-    renderMW("New Article")
+    newArticleMW
   );
 
   /**
   * Get the article
   */
   app.get('/article/:article_id',
-    getArticleMW,
-    renderMW("Article")
+    getArticleMW
   );
 
   /**
@@ -29,8 +27,7 @@ module.exports = function(app) {
    */
   app.use('/article/:article_id/edit',
     authMW,
-    editArticleMW,
-    renderMW("Edit Article")
+    editArticleMW
   );
 
   /**
@@ -40,6 +37,6 @@ module.exports = function(app) {
   app.use('/article/:article_id/delete',
     authMW,
     deleteArticleMW,
-    redirectMW('/articles')
+    redirectMW('/')
   );
 };
