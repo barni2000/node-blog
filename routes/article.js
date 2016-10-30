@@ -1,4 +1,3 @@
-const renderMW = require('../middleware/generic/render');
 const redirectMW = require('../middleware/generic/redirect');
 const authMW = require('../middleware/auth/auth');
 const newArticleMW = require('../middleware/article/newArticle');
